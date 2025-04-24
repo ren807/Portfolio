@@ -19,13 +19,14 @@ class TestController extends Controller
         $fieldMask   = 'places.id,places.displayName,places.location,places.formattedAddress';
         $companyData = $this->apiClient->fetchCompanyData('台ずし西永', $fieldMask);
 
-        $aaa = $this->apiClient->fetchNearbyShopApi();
-        return $aaa;
+        $shopsData = $this->apiClient->fetchNearbyShopApi();
+
+        $shopDetailData = $this->apiClient->fetchShopDetailsFromApi();
 
         if ($companyData->getStatusCode() === 200) {
-            dd($companyData->getData());
+            dd($companyData->getData(), $shopsData->getData(), $shopDetailData->getData());
         } else {
-            dd($companyData->getData());
+            dd($companyData->getData(), $shopsData->getData(), $shopDetailData->getData());
         }
     }
 }
